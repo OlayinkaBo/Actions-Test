@@ -1,4 +1,5 @@
 
+
       # This workflow will build a Java project with Gradle
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
 
@@ -6,12 +7,13 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ master ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ master ]
+    branches: [ "main" ]
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -24,7 +26,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Grant execute permission for Gradle Wrapper
+    - name: Set Gradle Wrapper Permissions
       run: chmod +x ./gradlew
 
     - name: Build with Gradle Wrapper
