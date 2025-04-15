@@ -5,28 +5,27 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
 
-   jobs:
-     build:
-       runs-on: ubuntu-latest
-       permissions:
-         contents: read
+jobs:
+  build:
 
-       steps:
-       - uses: actions/checkout@v4
-       - name: Set up JDK 17
-         uses: actions/setup-java@v4
-         with:
-           java-version: '17'
-           distribution: 'temurin'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
-       - name: Set Gradle Wrapper permissions
-         run: chmod +x ./gradlew
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
 
-       - name: Build with Gradle Wrapper
-         run: ./gradlew build
-         # Actions-Test
-# Actions-Test
+    - name: Set Gradle Wrapper Permissions
+      run: chmod +x ./gradlew
+
+    - name: Build with Gradle Wrapper
+      run: ./gradlew build
