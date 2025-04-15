@@ -1,6 +1,7 @@
 # This workflow will build a Java project with Gradle
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
 
+```
 name: Java CI with Gradle
 
 on:
@@ -29,3 +30,4 @@ jobs:
 
     - name: Build with Gradle Wrapper
       run: ./gradlew build
+      ```
