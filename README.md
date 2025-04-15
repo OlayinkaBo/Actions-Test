@@ -9,31 +9,24 @@ on:
   pull_request:
     branches: [ main ]
 
-jobs:
-  build-java:
+   jobs:
+     build:
+       runs-on: ubuntu-latest
+       permissions:
+         contents: read
 
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v2
+       steps:
+       - uses: actions/checkout@v4
+       - name: Set up JDK 17
+         uses: actions/setup-java@v4
+         with:
+           java-version: '17'
+           distribution: 'temurin'
 
-    - name: Set up JDK 1.8
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
+       - name: Set Gradle Wrapper permissions
+         run: chmod +x ./gradlew
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-
-    - name: Build with Gradle
-      run: ./gradlew build
-
-    - name: Build and Push Docker Image
-      uses: mr-smithers-excellent/docker-build-push@v4
-      with:
-        image: nanajanashia/demo-app
-        registry: docker.io
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+       - name: Build with Gradle Wrapper
+         run: ./gradlew build
          # Actions-Test
 # Actions-Test
